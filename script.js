@@ -61,6 +61,14 @@ addEventListener("DOMContentLoaded", (event) =>
             table.appendChild(tableBody);
             body.appendChild(table);
             table.setAttribute("border", "2");
+
+            var boutonRelancer = document.createElement("button");
+            boutonRelancer.textContent = "Relancer une partie";
+            boutonRelancer.addEventListener("click", () =>
+            {
+                window.location.reload();
+            });
+            body.appendChild(boutonRelancer);
         }
 
         PlacementJeton(event)
@@ -72,20 +80,28 @@ addEventListener("DOMContentLoaded", (event) =>
                 var token = document.querySelector('td[coordx="' + i + '"][coordy="' + colonne + '"]');
                 if (token.style.backgroundColor === "white" || token.style.backgroundColor === "lightgray")
                 {
-                    if (this.joueur === 1)
+                    var joueurActuel = document.querySelector("div");
+                    joueurActuel.textContent = "Au tour du joueur : " + this.joueur;
+
+                    if (this.joueur === 2)
                     {
                         token.style.backgroundColor = "red";
-                        this.joueur = 2;
+                        this.joueur = 1;
                     }
                     else
                     {
                         token.style.backgroundColor = "yellow";
-                        this.joueur = 1;
+                        this.joueur = 2;
                     }
                     break;
                 }
             }
         }
+        // function WinConditions()
+        //     {
+
+        //     }
+        // }
     }
     let obj = new Grille();
 });
