@@ -64,6 +64,29 @@ class Grille
             window.location.reload();
         });
         body.appendChild(boutonRelancer);
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes drop
+            {
+                0%
+                {
+                    transform: translateY(-500%);
+                    opacity: 10;
+                }
+                100%
+                {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+
+            td.drop
+            {
+                animation: drop 0.5s ease-in-out;
+            }
+        `;
+        document.head.appendChild(style);
     }
 
     PlacementJeton(event)
@@ -81,11 +104,13 @@ class Grille
                 if (this.joueur === 2)
                 {
                     token.style.backgroundColor = "red";
+                    token.classList.add('drop');
                     this.joueur = 1;
                 }
                 else
                 {
                     token.style.backgroundColor = "yellow";
+                    token.classList.add('drop');
                     this.joueur = 2;
                 }
                 if (this.CheckVictoire())
