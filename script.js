@@ -6,6 +6,12 @@ class Grille
         this.colonnes = parseInt(prompt("Nombre de colonnes"));
 
         var body = document.getElementsByTagName("body")[0];
+        
+        // Créer un conteneur pour centrer le jeu
+        var gameContainer = document.createElement("div");
+        gameContainer.className = "game-container";
+        body.appendChild(gameContainer);
+        
         var table = document.createElement("table");
         var tableBody = document.createElement("tbody");
 
@@ -54,7 +60,7 @@ class Grille
         }
 
         table.appendChild(tableBody);
-        body.appendChild(table);
+        gameContainer.appendChild(table);
         table.setAttribute("border", "2");
 
         var boutonRelancer = document.createElement("button");
@@ -63,7 +69,7 @@ class Grille
         {
             window.location.reload();
         });
-        body.appendChild(boutonRelancer);
+        gameContainer.appendChild(boutonRelancer);
 
         const style = document.createElement('style');
         style.textContent = `
@@ -228,5 +234,3 @@ class Grille
         return token.style.backgroundColor;
     }
 }
-
-let obj = new Grille();
